@@ -1,0 +1,45 @@
+#include<iomanip>
+using namespace std;
+int main()
+{
+int temp=0,sum=0,i,j;
+const char* arr[]={"Parti1:","Parti2:"};
+struct date
+{
+int day;
+int month;
+int year;
+}dat;
+struct item
+{
+int qty;
+int price; 
+}itm[1];
+fstream file;
+file.open("newfile.txt",ios::out | ios::app);
+cout<<"Enter today's date:";
+cin>>dat.day>>dat.month>>dat.year;
+cout<<endl<<endl;
+for(j=0;j<2;j++)
+{
+cout<<endl<<arr[j];
+cout<<"Enter Quantity:";
+cin>>itm[j].qty;
+cout<<"Enter Price:";
+cin>>itm[j].price;
+}
+file<<"\n\nDate="<<dat.day<<"/"<<dat.month<<"/"<<dat.year;
+file<<endl<<endl;
+file<<setw(10)<<"Particulars"<<setw(10)<<"Qty"<<setw(10)<<"price";
+for(j=0;j<2;j++)
+{
+file<<endl<<setw(10)<<arr[j]<<setw(10)<<itm[j].qty<<setw(10)<<itm[j].price;
+sum=sum+itm[j].qty;
+temp=temp+itm[j].price;
+}
+file<<endl<<"Sum of quantity="<<sum;
+file<<endl<<"Sum of price="<<temp;
+file.close();
+getch();
+return 0;
+}
